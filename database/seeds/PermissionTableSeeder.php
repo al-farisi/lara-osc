@@ -52,6 +52,11 @@ class PermissionTableSeeder extends Seeder
         		'name' => 'product-delete',
         		'display_name' => 'Delete Product',
         		'description' => 'Delete Product'
+        	],
+        	[
+        		'name' => 'permission-maintain',
+        		'display_name' => 'Maintain Permission',
+        		'description' => 'Maintain Permission'
         	]
         ];
 
