@@ -53,10 +53,10 @@
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Login
-                                </button>
-                                <a href="{{ route('facebook.login') }}" class="btn btn-danger">Facebook Login</a>
-                                <a href="{{ route('twitter.login') }}" class="btn btn-danger">Twitter Login</a>
-                                <a href="{{ route('google.login') }}" class="btn btn-danger">Google Login</a>
+                                </button>                                
+                                <a href="{{ route('provider_redirection', 'facebook') }}" class="btn btn-danger">Facebook Login</a>
+                                <a href="{{ route('provider_redirection', 'twitter') }}" class="btn btn-danger">Twitter Login</a>
+                                <a href="{{ route('provider_redirection', 'google') }}" class="btn btn-danger">Google Login</a>
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?
                                 </a>
