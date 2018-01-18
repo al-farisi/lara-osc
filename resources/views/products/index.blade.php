@@ -1,6 +1,7 @@
 @extends('layouts.app')
  
 @section('content')
+<div class="example">
 	<div class="row">
 	    <div class="col-lg-12 margin-tb">
 	        <div class="pull-left">
@@ -8,7 +9,7 @@
 	        </div>
 	        <div class="pull-right">
 	        	@permission('product-create')
-	            <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Item</a>
+	            <a class="button success" href="{{ route('products.create') }}"> Create New Item</a>
 	            @endpermission
 	        </div>
 	    </div>
@@ -18,7 +19,7 @@
 			<p>{{ $message }}</p>
 		</div>
 	@endif
-	<table class="table table-bordered">
+	<table class="table striped bordered hovered">
 		<tr>
 			<th>No</th>
 			<th>Title</th>
@@ -31,13 +32,13 @@
 		<td>{{ $product->name }}</td>
 		<td>{{ $product->description }}</td>
 		<td>
-			<a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
+			<a class="button info" href="{{ route('products.show',$product->id) }}">Show</a>
 			@permission('product-edit')
-			<a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
+			<a class="button primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
 			@endpermission
 			@permission('product-delete')
 			{!! Form::open(['method' => 'DELETE','route' => ['products.destroy', $product->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+            {!! Form::submit('Delete', ['class' => 'button danger']) !!}
         	{!! Form::close() !!}
         	@endpermission
 		</td>
@@ -45,4 +46,5 @@
 	@endforeach
 	</table>
 	{!! $products->render() !!}
+</div>
 @endsection

@@ -1,13 +1,14 @@
 @extends('layouts.app')
  
 @section('content')
+<div class="example">
 	<div class="row">
 	    <div class="col-lg-12 margin-tb">
 	        <div class="pull-left">
 	            <h2>Users Management</h2>
 	        </div>
 	        <div class="pull-right">
-	            <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
+	            <a class="button success" href="{{ route('users.create') }}"> Create New User</a>
 	        </div>
 	    </div>
 	</div>
@@ -16,7 +17,7 @@
 			<p>{{ $message }}</p>
 		</div>
 	@endif
-	<table class="table table-bordered">
+	<table class="table striped bordered hovered">
 		<tr>
 			<th>No</th>
 			<th>Name</th>
@@ -24,27 +25,28 @@
 			<th>Roles</th>
 			<th width="280px">Action</th>
 		</tr>
-	@foreach ($data as $key => $user)
-	<tr>
-		<td>{{ ++$i }}</td>
-		<td>{{ $user->name }}</td>
-		<td>{{ $user->email }}</td>
-		<td>
-			@if(!empty($user->roles))
-				@foreach($user->roles as $v)
-					<label class="label label-success">{{ $v->display_name }}</label>
-				@endforeach
-			@endif
-		</td>
-		<td>
-			<a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-			<a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
-			{!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-        	{!! Form::close() !!}
-		</td>
-	</tr>
-	@endforeach
+		@foreach ($data as $key => $user)
+		<tr>
+			<td>{{ ++$i }}</td>
+			<td>{{ $user->name }}</td>
+			<td>{{ $user->email }}</td>
+			<td>
+				@if(!empty($user->roles))
+					@foreach($user->roles as $v)
+						<label class="label label-success">{{ $v->display_name }}</label>
+					@endforeach
+				@endif
+			</td>
+			<td>
+				<a class="button info" href="{{ route('users.show',$user->id) }}">Show</a>
+				<a class="button primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+				{!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
+				{!! Form::submit('Delete', ['class' => 'button danger']) !!}
+				{!! Form::close() !!}
+			</td>
+		</tr>
+		@endforeach
 	</table>
 	{!! $data->render() !!}
+</div>
 @endsection

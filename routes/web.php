@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/metro', function () {
+    return view('layouts.metro');
+});
+
 // Route::get('auth/facebook', 'FacebookController@redirectToProvider')->name('facebook.login');
 // Route::get('auth/facebook/callback', 'FacebookCOntroller@handleProviderCallback');
 
@@ -29,7 +33,7 @@ Route::get('auth/{provider}/callback', 'SocialMediaController@handleProviderCall
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::auth();
 

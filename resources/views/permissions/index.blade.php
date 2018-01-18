@@ -1,6 +1,7 @@
 @extends('layouts.app')
  
 @section('content')
+<div class="example">
 	<div class="row">
 	    <div class="col-lg-12 margin-tb">
 	        <div class="pull-left">
@@ -8,7 +9,7 @@
 	        </div>
 	        <div class="pull-right">
 	        	@permission('role-create')
-	            <a class="btn btn-success" href="{{ route('permissions.create') }}"> Create New Permission</a>
+	            <a class="button success" href="{{ route('permissions.create') }}"> Create New Permission</a>
 	            @endpermission
 	        </div>
 	    </div>
@@ -18,7 +19,7 @@
 			<p>{{ $message }}</p>
 		</div>
 	@endif
-	<table class="table table-bordered">
+	<table class="table striped bordered hovered">
 		<tr>
 			<th>No</th>
 			<th>Name</th>
@@ -31,13 +32,13 @@
 		<td>{{ $permission->display_name }}</td>
 		<td>{{ $permission->description }}</td>
 		<td>
-			<a class="btn btn-info" href="{{ route('permissions.show',$permission->id) }}">Show</a>
+			<a class="button info" href="{{ route('permissions.show',$permission->id) }}">Show</a>
 			@permission('role-edit')
-			<a class="btn btn-primary" href="{{ route('permissions.edit',$permission->id) }}">Edit</a>
+			<a class="button primary" href="{{ route('permissions.edit',$permission->id) }}">Edit</a>
 			@endpermission
 			@permission('role-delete')
 			{!! Form::open(['method' => 'DELETE','route' => ['permissions.destroy', $permission->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+            {!! Form::submit('Delete', ['class' => 'button danger']) !!}
         	{!! Form::close() !!}
         	@endpermission
 		</td>
@@ -45,4 +46,5 @@
 	@endforeach
 	</table>
 	{!! $permissions->render() !!}
+</div>
 @endsection
