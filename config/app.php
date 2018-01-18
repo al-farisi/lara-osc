@@ -1,5 +1,8 @@
 <?php
 
+use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\SocialiteServiceProvider;
+
 return [
 
     /*
@@ -169,6 +172,7 @@ return [
          */
         Zizaco\Entrust\EntrustServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -230,6 +234,7 @@ return [
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
         'FORM' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];
