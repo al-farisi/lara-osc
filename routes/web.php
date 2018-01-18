@@ -18,6 +18,12 @@ Route::get('/', function () {
 Route::get('auth/facebook', 'FacebookController@redirectToProvider')->name('facebook.login');
 Route::get('auth/facebook/callback', 'FacebookCOntroller@handleProviderCallback');
 
+Route::get('auth/twitter', 'TwitterController@redirectToProvider')->name('twitter.login');
+Route::get('auth/twitter/callback', 'TwitterController@handleProviderCallback');
+
+Route::get('auth/google', 'GoogleController@redirectToProvider')->name('google.login');
+Route::get('auth/google/callback', 'GoogleController@handleProviderCallback');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
