@@ -15,18 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('auth/facebook', 'FacebookController@redirectToProvider')->name('facebook.login');
-Route::get('auth/facebook/callback', 'FacebookCOntroller@handleProviderCallback');
+Route::get('/metro', function () {
+    return view('layouts.metro');
+});
 
-Route::get('auth/twitter', 'TwitterController@redirectToProvider')->name('twitter.login');
-Route::get('auth/twitter/callback', 'TwitterController@handleProviderCallback');
+// Route::get('auth/facebook', 'FacebookController@redirectToProvider')->name('facebook.login');
+// Route::get('auth/facebook/callback', 'FacebookCOntroller@handleProviderCallback');
 
-Route::get('auth/google', 'GoogleController@redirectToProvider')->name('google.login');
-Route::get('auth/google/callback', 'GoogleController@handleProviderCallback');
+// Route::get('auth/twitter', 'TwitterController@redirectToProvider')->name('twitter.login');
+// Route::get('auth/twitter/callback', 'TwitterController@handleProviderCallback');
+
+// Route::get('auth/google', 'GoogleController@redirectToProvider')->name('google.login');
+// Route::get('auth/google/callback', 'GoogleController@handleProviderCallback');
+
+Route::get('auth/{provider}', 'SocialMediaController@redirectToProvider')->name('provider_redirection');
+Route::get('auth/{provider}/callback', 'SocialMediaController@handleProviderCallback');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::auth();
 
