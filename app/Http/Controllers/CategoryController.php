@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\SubCategory;
 use Illuminate\Http\Request;
 use DB;
 
@@ -67,8 +68,8 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::find($id);
-
-        return view('categories.show',compact('category'));
+        $sub_categories = SubCategory::select('display_name', 'description')->where('category_id', $id)->get();
+        return view('categories.show',compact('category', 'sub_categories'))->with('i', 0);
     }
 
     /**
@@ -101,7 +102,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->display_name = $request->input('display_name');
         $category->description = $request->input('description');
-        $category->status = $request->input('status');
+        $category->status = $request->has('status');
         $category->save();
 
         return redirect()->route('categories.index')

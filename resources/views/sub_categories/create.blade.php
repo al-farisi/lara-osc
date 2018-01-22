@@ -4,10 +4,10 @@
 	<div class="row">
 	    <div class="col-lg-12 margin-tb">
 	        <div class="pull-left">
-	            <h2>Create New Permission</h2>
+	            <h2>Create New Sub Category</h2>
 	        </div>
 	        <div class="pull-right">
-	            <a class="btn btn-primary" href="{{ route('permissions.index') }}"> Back</a>
+	            <a class="btn btn-primary" href="{{ route('sub_categories.index') }}"> Back</a>
 	        </div>
 	    </div>
 	</div>
@@ -21,7 +21,7 @@
 			</ul>
 		</div>
 	@endif
-	{!! Form::open(array('route' => 'permissions.store','method'=>'POST')) !!}
+	{!! Form::open(array('route' => 'sub_categories.store','method'=>'POST')) !!}
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -39,6 +39,18 @@
             <div class="form-group">
                 <strong>Description:</strong>
                 {!! Form::textarea('description', null, array('placeholder' => 'Description','class' => 'form-control','style'=>'height:100px')) !!}
+            </div>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12">
+			<div class="form-group">
+				<strong>Parent Category:</strong>					
+				{!! Form::select('category_id', $categories, array('class' => 'form-control')) !!}
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Is Active:</strong>
+                {!! Form::checkbox('status', 1, true) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

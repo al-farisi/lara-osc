@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\SubCategory;
+use App\Category;
 use Illuminate\Http\Request;
 use DB;
 
@@ -27,8 +28,9 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        $sub_category = SubCategory::get();
-        return view('sub_categories.create',compact('sub_category'));
+        // $categories = Category::all(['id', 'display_name']);
+        $categories = Category::pluck('display_name', 'id')->toArray();
+        return view('sub_categories.create',compact('categories'));
     }
 
     /**
@@ -50,7 +52,7 @@ class SubCategoryController extends Controller
         $sub_category->name = $request->input('name');
         $sub_category->display_name = $request->input('display_name');
         $sub_category->description = $request->input('description');
-        $sub_category->status = $request->input('status');
+        $sub_category->status = $request->has('status');
         $sub_category->category_id = $request->input('category_id');
         $sub_category->save();
 
@@ -67,8 +69,8 @@ class SubCategoryController extends Controller
     public function show($id)
     {
         $sub_category = SubCategory::find($id);
-
-        return view('sub_categories.show',compact('sub_category'));
+        $parent_category = Category::find($sub_category->category_id);
+        return view('sub_categories.show',compact('sub_category', 'parent_category'));
     }
 
     /**
@@ -80,8 +82,9 @@ class SubCategoryController extends Controller
     public function edit($id)
     {
         $sub_category = SubCategory::find($id);
-
-        return view('sub_categories.edit',compact('sub_category'));
+        //$categories = Category::all(['id', 'display_name']);
+        $categories = Category::pluck('display_name', 'id')->toArray();
+        return view('sub_categories.edit',compact('sub_category','categories'));
     }
 
     /**
@@ -101,7 +104,8 @@ class SubCategoryController extends Controller
         $sub_category = SubCategory::find($id);
         $sub_category->display_name = $request->input('display_name');
         $sub_category->description = $request->input('description');
-        $sub_category->status = $request->input('status');
+        $sub_category->category_id = $request->input('category_id');
+        $sub_category->status = $request->has('status');
         $sub_category->save();
 
         return redirect()->route('sub_categories.index')

@@ -5,11 +5,11 @@
 	<div class="row">
 	    <div class="col-lg-12 margin-tb">
 	        <div class="pull-left">
-	            <h2>Permission Management</h2>
+	            <h2>Sub Category Management</h2>
 	        </div>
 	        <div class="pull-right">
-	        	@permission('role-create')
-	            <a class="button success" href="{{ route('permissions.create') }}"> Create New Permission</a>
+	        	@permission('category-maintain')
+	            <a class="button success" href="{{ route('sub_categories.create') }}"> Create New Sub Category</a>
 	            @endpermission
 	        </div>
 	    </div>
@@ -24,20 +24,28 @@
 			<th>No</th>
 			<th>Name</th>
 			<th>Description</th>
+			<th>Status</th>
 			<th width="280px">Action</th>
 		</tr>
-	@foreach ($permissions as $key => $permission)
+	@foreach ($sub_categories as $key => $sub_category)
 	<tr>
 		<td>{{ ++$i }}</td>
-		<td>{{ $permission->display_name }}</td>
-		<td>{{ $permission->description }}</td>
+		<td>{{ $sub_category->display_name }}</td>
+		<td>{{ $sub_category->description }}</td>
 		<td>
-			<a class="button info" href="{{ route('permissions.show',$permission->id) }}">Show</a>
+			@if ($sub_category->status == 1)
+				<label class="label label-success">Active</label>
+			@else
+				<label class="label label-danger">Non-Active</label>
+			@endif
+		</td>
+		<td>
+			<a class="button info" href="{{ route('sub_categories.show',$sub_category->id) }}">Show</a>
 			@permission('role-edit')
-			<a class="button primary" href="{{ route('permissions.edit',$permission->id) }}">Edit</a>
+			<a class="button primary" href="{{ route('sub_categories.edit',$sub_category->id) }}">Edit</a>
 			@endpermission
 			@permission('role-delete')
-			{!! Form::open(['method' => 'DELETE','route' => ['permissions.destroy', $permission->id],'style'=>'display:inline']) !!}
+			{!! Form::open(['method' => 'DELETE','route' => ['sub_categories.destroy', $sub_category->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'button danger']) !!}
         	{!! Form::close() !!}
         	@endpermission
@@ -45,6 +53,6 @@
 	</tr>
 	@endforeach
 	</table>
-	{!! $permissions->render() !!}
+	{!! $sub_categories->render() !!}
 </div>
 @endsection

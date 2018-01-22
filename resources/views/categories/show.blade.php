@@ -41,4 +41,25 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+	    <div class="col-lg-12 margin-tb">
+	        <div class="pull-left">
+	            <h3> Sub Categories</h3>
+	        </div>
+	    </div>
+	</div>
+	<table class="table striped bordered hovered">
+		<tr>
+			<th>No</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+	@foreach ($sub_categories as $key => $sub_category)
+	<tr>
+		<td>{{ ++$i }}</td>
+		<td>{{ $sub_category->display_name }}</td>
+		<td>{{ $sub_category->description }}</td>		
+	</tr>
+	@endforeach
+	</table>
 @endsection

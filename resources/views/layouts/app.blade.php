@@ -94,6 +94,7 @@
                     <li><a href="{{ route('permissions.index') }}">Permissions</a></li>
                     @permission('category-maintain')
                     <li><a href="{{ route('categories.index') }}">Categories</a></li>
+                    <li><a href="{{ route('sub_categories.index') }}">Sub Categories</a></li>
                     @endpermission
                     <li><a href="{{ route('products.index') }}">Items</a></li>
                 </ul>

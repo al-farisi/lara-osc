@@ -32,7 +32,7 @@
 		<td>{{ $role->display_name }}</td>
 		<td>{{ $role->description }}</td>
 		<td>
-			<a class=button info" href="{{ route('roles.show',$role->id) }}">Show</a>
+			<a class="button info" href="{{ route('roles.show',$role->id) }}">Show</a>
 			@permission('role-edit')
 			<a class="button primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
 			@endpermission

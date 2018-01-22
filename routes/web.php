@@ -76,6 +76,14 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::patch('categories/{id}',['as'=>'categories.update','uses'=>'CategoryController@update','middleware' => ['permission:category-maintain']]);
 	Route::delete('categories/{id}',['as'=>'categories.destroy','uses'=>'CategoryController@destroy','middleware' => ['permission:category-maintain']]);
 
+	Route::get('sub_categories',['as'=>'sub_categories.index','uses'=>'SubCategoryController@index','middleware' => ['permission:category-maintain']]);
+	Route::get('sub_categories/create',['as'=>'sub_categories.create','uses'=>'SubCategoryController@create','middleware' => ['permission:category-maintain']]);
+	Route::post('sub_categories/create',['as'=>'sub_categories.store','uses'=>'SubCategoryController@store','middleware' => ['permission:category-maintain']]);
+	Route::get('sub_categories/{id}',['as'=>'sub_categories.show','uses'=>'SubCategoryController@show','middleware' => ['permission:category-maintain']]);
+	Route::get('sub_categories/{id}/edit',['as'=>'sub_categories.edit','uses'=>'SubCategoryController@edit','middleware' => ['permission:category-maintain']]);
+	Route::patch('sub_categories/{id}',['as'=>'sub_categories.update','uses'=>'SubCategoryController@update','middleware' => ['permission:category-maintain']]);
+	Route::delete('sub_categories/{id}',['as'=>'sub_categories.destroy','uses'=>'SubCategoryController@destroy','middleware' => ['permission:category-maintain']]);
+
 	Route::get('products',['as'=>'products.index','uses'=>'ProductController@index','middleware' => ['permission:product-list|product-create|product-edit|product-delete']]);
 	Route::get('products/create',['as'=>'products.create','uses'=>'ProductController@create','middleware' => ['permission:product-create']]);
 	Route::post('products/create',['as'=>'products.store','uses'=>'ProductController@store','middleware' => ['permission:product-create']]);
