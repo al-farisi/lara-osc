@@ -40,7 +40,7 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:roles,name',
+            'name' => 'required|unique:permissions,name',
             'display_name' => 'required',
             'description' => 'required',
         ]);

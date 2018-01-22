@@ -43,8 +43,14 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/home', 'HomeController@index');
 
 
-	Route::resource('users','UserController');
-
+	//Route::resource('users','UserController');
+	Route::get('users',['as'=>'users.index','uses'=>'UserController@index','middleware' => ['permission:permission-maintain']]);
+	Route::get('users/create',['as'=>'users.create','uses'=>'UserController@create','middleware' => ['permission:permission-maintain']]);
+	Route::post('users/create',['as'=>'users.store','uses'=>'UserController@store','middleware' => ['permission:permission-maintain']]);
+	Route::get('users/{id}',['as'=>'users.show','uses'=>'UserController@show','middleware' => ['permission:permission-maintain']]);
+	Route::get('users/{id}/edit',['as'=>'users.edit','uses'=>'UserController@edit','middleware' => ['permission:permission-maintain']]);
+	Route::patch('users/{id}',['as'=>'users.update','uses'=>'UserController@update','middleware' => ['permission:permission-maintain']]);
+	Route::delete('users/{id}',['as'=>'users.destroy','uses'=>'UserController@destroy','middleware' => ['permission:permission-maintain']]);
 
 	Route::get('roles',['as'=>'roles.index','uses'=>'RoleController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
 	Route::get('roles/create',['as'=>'roles.create','uses'=>'RoleController@create','middleware' => ['permission:role-create']]);
@@ -61,6 +67,22 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('permissions/{id}/edit',['as'=>'permissions.edit','uses'=>'PermissionController@edit','middleware' => ['permission:permission-maintain']]);
 	Route::patch('permissions/{id}',['as'=>'permissions.update','uses'=>'PermissionController@update','middleware' => ['permission:permission-maintain']]);
 	Route::delete('permissions/{id}',['as'=>'permissions.destroy','uses'=>'PermissionController@destroy','middleware' => ['permission:permission-maintain']]);
+
+	Route::get('categories',['as'=>'categories.index','uses'=>'CategoryController@index','middleware' => ['permission:category-maintain']]);
+	Route::get('categories/create',['as'=>'categories.create','uses'=>'CategoryController@create','middleware' => ['permission:category-maintain']]);
+	Route::post('categories/create',['as'=>'categories.store','uses'=>'CategoryController@store','middleware' => ['permission:category-maintain']]);
+	Route::get('categories/{id}',['as'=>'categories.show','uses'=>'CategoryController@show','middleware' => ['permission:category-maintain']]);
+	Route::get('categories/{id}/edit',['as'=>'categories.edit','uses'=>'CategoryController@edit','middleware' => ['permission:category-maintain']]);
+	Route::patch('categories/{id}',['as'=>'categories.update','uses'=>'CategoryController@update','middleware' => ['permission:category-maintain']]);
+	Route::delete('categories/{id}',['as'=>'categories.destroy','uses'=>'CategoryController@destroy','middleware' => ['permission:category-maintain']]);
+
+	Route::get('sub_categories',['as'=>'sub_categories.index','uses'=>'SubCategoryController@index','middleware' => ['permission:category-maintain']]);
+	Route::get('sub_categories/create',['as'=>'sub_categories.create','uses'=>'SubCategoryController@create','middleware' => ['permission:category-maintain']]);
+	Route::post('sub_categories/create',['as'=>'sub_categories.store','uses'=>'SubCategoryController@store','middleware' => ['permission:category-maintain']]);
+	Route::get('sub_categories/{id}',['as'=>'sub_categories.show','uses'=>'SubCategoryController@show','middleware' => ['permission:category-maintain']]);
+	Route::get('sub_categories/{id}/edit',['as'=>'sub_categories.edit','uses'=>'SubCategoryController@edit','middleware' => ['permission:category-maintain']]);
+	Route::patch('sub_categories/{id}',['as'=>'sub_categories.update','uses'=>'SubCategoryController@update','middleware' => ['permission:category-maintain']]);
+	Route::delete('sub_categories/{id}',['as'=>'sub_categories.destroy','uses'=>'SubCategoryController@destroy','middleware' => ['permission:category-maintain']]);
 
 	Route::get('products',['as'=>'products.index','uses'=>'ProductController@index','middleware' => ['permission:product-list|product-create|product-edit|product-delete']]);
 	Route::get('products/create',['as'=>'products.create','uses'=>'ProductController@create','middleware' => ['permission:product-create']]);

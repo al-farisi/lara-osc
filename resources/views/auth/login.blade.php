@@ -46,9 +46,18 @@
                 Forgot Your Password?
             </a>  
             <br />
-            <a href="{{ route('provider_redirection', 'facebook') }}" class="button small primary">Facebook Login</a>
-            <a href="{{ route('provider_redirection', 'twitter') }}" class="button small info">Twitter Login</a>
-            <a href="{{ route('provider_redirection', 'google') }}" class="button small danger">Google Login</a>
+            <a href="{{ route('provider_redirection', 'facebook') }}" class="image-button small primary">
+                <img src="images/facebook.png" class="icon bg-white">
+                Facebook Login
+            </a>
+            <a href="{{ route('provider_redirection', 'twitter') }}" class="image-button small info">
+                <img src="images/twitter.png" class="icon bg-white">
+                Twitter Login
+            </a>
+            <a href="{{ route('provider_redirection', 'google') }}" class="image-button small danger">
+                <img src="images/gplus.png" class="icon bg-white">
+                Google+ Login                
+            </a>
         </div>
     </form>
 </div>

@@ -11,10 +11,17 @@
     <link href="css/metro.css" rel="stylesheet">
     <link href="css/metro-icons.css" rel="stylesheet">
     <link href="css/metro-responsive.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+
+    <link href="css/docs.css" rel="stylesheet">
 
     <script src="js/jquery-2.1.3.min.js"></script>
     <script src="js/metro.js"></script>
-
+    <script src="js/docs.js"></script>
+    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="js/ga.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
     <style>
         .login-form {
             width: 27rem;
@@ -85,6 +92,10 @@
                     <li><a href="{{ route('users.index') }}">Users</a></li>
                     <li><a href="{{ route('roles.index') }}">Roles</a></li>
                     <li><a href="{{ route('permissions.index') }}">Permissions</a></li>
+                    @permission('category-maintain')
+                    <li><a href="{{ route('categories.index') }}">Categories</a></li>
+                    <li><a href="{{ route('sub_categories.index') }}">Sub Categories</a></li>
+                    @endpermission
                     <li><a href="{{ route('products.index') }}">Items</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->
