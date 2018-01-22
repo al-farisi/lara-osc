@@ -5,11 +5,11 @@
 	<div class="row">
 	    <div class="col-lg-12 margin-tb">
 	        <div class="pull-left">
-	            <h2>Role Management</h2>
+	            <h2>Category Management</h2>
 	        </div>
 	        <div class="pull-right">
-	        	@permission('role-create')
-	            <a class="button success" href="{{ route('roles.create') }}"> Create New Role</a>
+	        	@permission('category-maintain')
+	            <a class="button success" href="{{ route('categories.create') }}"> Create New Category</a>
 	            @endpermission
 	        </div>
 	    </div>
@@ -24,20 +24,28 @@
 			<th>No</th>
 			<th>Name</th>
 			<th>Description</th>
+			<th>Status</th>
 			<th width="280px">Action</th>
 		</tr>
-	@foreach ($roles as $key => $role)
+	@foreach ($categories as $key => $category)
 	<tr>
 		<td>{{ ++$i }}</td>
-		<td>{{ $role->display_name }}</td>
-		<td>{{ $role->description }}</td>
+		<td>{{ $category->display_name }}</td>
+		<td>{{ $category->description }}</td>
 		<td>
-			<a class="button info" href="{{ route('roles.show',$role->id) }}">Show</a>
+			@if ($category->status == 1)
+				<label class="label label-success">Active</label>
+			@else
+				<label class="label label-danger">Non-Active</label>
+			@endif
+		</td>
+		<td>
+			<a class="button info" href="{{ route('categories.show',$category->id) }}">Show</a>
 			@permission('role-edit')
-			<a class="button primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
+			<a class="button primary" href="{{ route('categories.edit',$category->id) }}">Edit</a>
 			@endpermission
 			@permission('role-delete')
-			{!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
+			{!! Form::open(['method' => 'DELETE','route' => ['categories.destroy', $category->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'button danger']) !!}
         	{!! Form::close() !!}
         	@endpermission
@@ -45,6 +53,6 @@
 	</tr>
 	@endforeach
 	</table>
-	{!! $roles->render() !!}
+	{!! $categories->render() !!}
 </div>
 @endsection
