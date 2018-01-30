@@ -96,7 +96,7 @@
                     <li><a href="{{ route('categories.index') }}">Categories</a></li>
                     <li><a href="{{ route('sub_categories.index') }}">Sub Categories</a></li>
                     @endpermission
-                    <li><a href="{{ route('products.index') }}">Items</a></li>
+                    <li><a href="{{ route('products.index') }}">Products</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
