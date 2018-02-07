@@ -5,7 +5,7 @@
 	<div class="row">
 	    <div class="col-lg-12 margin-tb">
 	        <div class="pull-left">
-	            <h2>Items CRUD</h2>
+	            <h2>Products</h2>
 	        </div>
 	        <div class="pull-right">
 	        	@permission('product-create')
@@ -24,6 +24,7 @@
 			<th>No</th>
 			<th>Title</th>
 			<th>Description</th>
+			<th>Image</th>
 			<th width="280px">Action</th>
 		</tr>
 	@foreach ($products as $key => $product)
@@ -31,6 +32,7 @@
 		<td>{{ ++$i }}</td>
 		<td>{{ $product->name }}</td>
 		<td>{{ $product->description }}</td>
+		<td><img class="img-responsive img-circle" src="{{asset('storage/'.$product->image)}}" style="max-width:100px;"></td>
 		<td>
 			<a class="button info" href="{{ route('products.show',$product->id) }}">Show</a>
 			@permission('product-edit')

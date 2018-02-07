@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\SubCategory;
+use DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -27,7 +30,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $sub_categories = SubCategory::with('parent')->get();
+        return view('products.create',compact('sub_categories'));
     }
 
 
@@ -39,14 +43,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->file('productimage'));
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
+            'price' => 'required'
         ]);
 
+        // $file = $request['productimage'];
+        $file = $request->file('productimage')->store('product_images','public');      
 
-        Product::create($request->all());
+        $product = new Product(array(
+            'name' => $request->get('name'),
+            'description'  => $request->get('description'),
+            'video_url'  => $request->get('video_url'),
+            'price'  => $request->get('price'),
+            'image' => $file
+        ));    
+        
+        $product->save();
 
+        // foreach ($request->input('sub_category') as $key => $value) {
+        //     $product->attachPermission($value);
+        // }
 
         return redirect()->route('products.index')
                         ->with('success','Product created successfully');

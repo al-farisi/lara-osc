@@ -7,7 +7,7 @@
 	            <h2> Show Item</h2>
 	        </div>
 	        <div class="pull-right">
-	            <a class="btn btn-primary" href="{{ route('itemCRUD2.index') }}"> Back</a>
+	            <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
 	        </div>
 	    </div>
 	</div>
@@ -15,13 +15,19 @@
 		<div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Title:</strong>
-                {{ $item->title }}
+                {{ $product->name }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Description:</strong>
-                {{ $item->description }}
+                {{ $product->description }}
+            </div>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Image:</strong>
+                <img class="img-responsive img-circle" src="{{asset('storage/'.$product->image)}}" style="max-width:300px;">
             </div>
         </div>
 	</div>
