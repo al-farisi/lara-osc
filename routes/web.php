@@ -21,6 +21,10 @@ Route::get('/metro', function () {
     return view('layouts.metro');
 });
 
+Route::get('paypal/express-checkout', 'PaypalController@expressCheckout')->name('paypal.express-checkout');
+Route::get('paypal/express-checkout-success', 'PaypalController@expressCheckoutSuccess');
+Route::post('paypal/notify', 'PaypalController@notify');
+
 // Route::get('auth/facebook', 'FacebookController@redirectToProvider')->name('facebook.login');
 // Route::get('auth/facebook/callback', 'FacebookCOntroller@handleProviderCallback');
 

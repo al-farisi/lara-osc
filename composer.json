@@ -12,6 +12,7 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.5",
+        "srmklive/paypal": "^1.5",
         "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {

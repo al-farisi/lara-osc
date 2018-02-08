@@ -79,6 +79,11 @@
             </div>
         </nav>
         <div class="container">
+            @if (Session::has('message'))
+            <div class="alert alert-{{ Session::get('code') }}">
+                <p>{{ Session::get('message') }}</p>
+            </div>
+            @endif
             <div class="row">
                 @foreach ($products as $key => $product)
                 <div class="col-md-3">
@@ -95,9 +100,10 @@
                             </div>
                             <h5>Description</h5>
                             <p>{{ $product->description }}</p> 
-                            <h5>Price</h5>
-                            <p>{{ $product->price }} USD</p> 
-                            <button>OK</button>
+                            @auth
+                            <h5>Pay $20 via:</h5>
+                            <a href="{{ route('paypal.express-checkout') }}" class='btn-info btn'>PayPal</a>
+                            @endauth
                         </div>
                     </div>
                 </div>
