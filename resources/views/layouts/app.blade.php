@@ -88,7 +88,9 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
+                    @guest
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    @else
                     <li><a href="{{ route('users.index') }}">Users</a></li>
                     <li><a href="{{ route('roles.index') }}">Roles</a></li>
                     <li><a href="{{ route('permissions.index') }}">Permissions</a></li>
@@ -97,6 +99,7 @@
                     <li><a href="{{ route('sub_categories.index') }}">Sub Categories</a></li>
                     @endpermission
                     <li><a href="{{ route('products.index') }}">Products</a></li>
+                    @endguest
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
