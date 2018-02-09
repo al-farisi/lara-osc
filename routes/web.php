@@ -25,6 +25,8 @@ Route::get('paypal/express-checkout', 'PaypalController@expressCheckout')->name(
 Route::get('paypal/express-checkout-success', 'PaypalController@expressCheckoutSuccess');
 Route::post('paypal/notify', 'PaypalController@notify');
 
+Route::post('/charge', 'CheckoutController@charge');
+
 // Route::get('auth/facebook', 'FacebookController@redirectToProvider')->name('facebook.login');
 // Route::get('auth/facebook/callback', 'FacebookCOntroller@handleProviderCallback');
 

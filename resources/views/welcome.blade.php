@@ -101,8 +101,21 @@
                             <h5>Description</h5>
                             <p>{{ $product->description }}</p> 
                             @auth
-                            <h5>Pay $20 via:</h5>
-                            <a href="{{ route('paypal.express-checkout') }}" class='btn-info btn'>PayPal</a>
+                            <h5>Price $20</h5>
+                            <a href="{{ route('paypal.express-checkout') }}" class='btn-info btn'>Pay with PayPal</a>
+                            <form action="/charge" method="POST">
+                                {{ csrf_field() }}
+                                <script
+                                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                        data-key="{{ env('STRIPE_PUB_KEY') }}"
+                                        data-amount="2000"
+                                        data-name="Pay with CC"
+                                        data-description="{{ $product->name }}"
+                                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                        data-locale="auto"
+                                        data-currency="usd">
+                                </script>
+                            </form>
                             @endauth
                         </div>
                     </div>
